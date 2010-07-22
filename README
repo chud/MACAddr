@@ -1,0 +1,12 @@
+MACAddr - a MAC address class
+
+MACAddr is a class for the manipulation of IEEE MAC addresses. 
+It is patterned after the IPAddr class in the Ruby core libs.
+
+Author: Raymond P Chudzinski
+Origin Date: July 18, 2010
+
+released on github July 21. 2010
+
+all of the orignal source can be found in github
+http://github.com/chud/MACAddr
