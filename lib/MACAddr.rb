@@ -9,10 +9,10 @@
 #  - Raymond P Chudzinski <ray@chudzinski.net> (current maintainer)
 #
 #  TODO:
-#   - vendor lookup from OID
+#   - lowercase hex digits fail to match the vendor oids (BUG)
+#   - add a MACAddr.new() (nil argument) initializer
 #
 class MACAddr
-
 
   private
   def initialize(mac_addr)
@@ -13873,7 +13873,7 @@ class MACAddr
 		'0x001531' => 'KOCOM'
 	}
     else
-      raise ArgumentError, "Invalid format - usage XX:XX:XX:XX:XX:XX"
+      raise ArgumentError, "Invalid format - usage MACAddr.new(\"XX:XX:XX:XX:XX:XX\")"
     end #end else
   end
 

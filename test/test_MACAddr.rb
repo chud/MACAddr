@@ -28,6 +28,7 @@ class TestMACAddr < Test::Unit::TestCase
     assert_raise(ArgumentError) { MACAddr.new("00:00::00:00:00")}
     assert_nothing_raised(ArgumentError) { MACAddr.new("00:00:00:00:00:00")}
     assert_nothing_raised(ArgumentError) { MACAddr.new("0:00:00:00:00:00")}
+
   end
 
   def test_equality
@@ -37,7 +38,9 @@ class TestMACAddr < Test::Unit::TestCase
   end
 
   def test_vendor_membership
-    assert_equal("Cisco Systems", MACAddr.new("00:00:0c:03:05:06").vendor_name)
+    assert_equal("CISCO SYSTEMS, INC.", MACAddr.new("00:00:0C:03:05:06").vendor_name)
+    assert_not_equal("CISCO SYSTEMS, INC.", MACAddr.new("00:00:0d:03:05:06").vendor_name)
+    assert_equal("CISCO SYSTEMS, INC.", MACAddr.new("00:00:0c:00:00:00").vendor_name)
     assert_equal("00:00:0c:00:00:00", MACAddr.new("00:00:0c:03:05:06").vendor_oid)
   end
 end
