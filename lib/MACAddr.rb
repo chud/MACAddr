@@ -1,3 +1,4 @@
+# coding: utf-8
 #
 # MACAddr.rb - A class for manipulation of 
 # network media access control addresses
