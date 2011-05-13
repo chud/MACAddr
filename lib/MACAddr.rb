@@ -16,9 +16,17 @@
 class MACAddr
 
   private
-  def initialize(mac_addr)
+  def initialize(mac_addr, format='colon_hex')
     @mac_addr = mac_addr
-    re_parse = /^([[:xdigit:]]{1,2}):([[:xdigit:]]{1,2}):([[:xdigit:]]{1,2}):([[:xdigit:]]{1,2}):([[:xdigit:]]{1,2}):([[:xdigit:]]{1,2})?$/
+    colon_hex_parse = /^([[:xdigit:]]{1,2}):([[:xdigit:]]{1,2}):([[:xdigit:]]{1,2}):([[:xdigit:]]{1,2}):([[:xdigit:]]{1,2}):([[:xdigit:]]{1,2})?$/
+    dotted_decimal_parse = /^([[:digit:]]{1,3})\.([[:digit:]]{1,3})\.([[:digit:]]{1,3})\.([[:digit:]]{1,3})\.([[:digit:]]{1,3})\.([[:digit:]]{1,3})?$/
+	
+		if format == 'colon_hex'
+			re_parse = colon_hex_parse
+		else
+			re_parse = dotted_decimal_parse
+		end
+
     if @words = re_parse.match(@mac_addr)
       # the current list of regisitered IEEE OIDs
   	@oui_list = {
@@ -13874,7 +13882,7 @@ class MACAddr
 		'0x001531' => 'KOCOM'
 	}
     else
-      raise ArgumentError, "Invalid format - usage MACAddr.new(\"XX:XX:XX:XX:XX:XX\")"
+      raise ArgumentError, 'Invalid format - usage MACAddr.new("XX:XX:XX:XX:XX:XX") or ddd.ddd.ddd.ddd.ddd.ddd'
     end #end else
   end
 
