@@ -1,11 +1,9 @@
 # coding: utf-8
 #
-# MACAddr.rb - A class for manipulation of 
-# network media access control addresses
+# MACAddr.rb - A class for manipulation of network media access control addresses
 #
-# it is patterned after the IPAddr class 
-# found in the std ruby libraries
-#  
+# it is patterned after the IPAddr class found in the std ruby libraries
+# 
 # Contact:
 #  - Raymond P Chudzinski <ray@chudzinski.net> (current maintainer)
 #
@@ -13,16 +11,20 @@
 #   - lowercase hex digits fail to match the vendor oids (BUG)
 #   - add a MACAddr.new() (nil argument) initializer
 #
+# data structure containing the IEEE oui list of registered addresses
+# this list is updated periodically and released as a minor gem version
+#
+# Date Created: July, 10th 2010 - gem version 0.5.0
+#
 class MACAddr
 
 private
 # create a new mac by parsing a passed string
 # - mac_addr 
-#		is a colon delimited hex string or 
-#		a dotted decimal string (specified in 'format'
+#		is a colon delimited hex string or a dotted decimal string (specified in 'format' argument)
 # - format 
-#		defaults to 'colon_hex' the other
-#		option is 'dotted_decimal'
+#		defaults to 'colon_hex' the other option is 'dotted_decimal'
+#   usage "XX:XX:XX:XX:XX:XX" or "ddd.ddd.ddd.ddd.ddd.ddd"
   def initialize(mac_addr, format='colon_hex')
 		@mac = ""
     mac_addr = mac_addr
@@ -13938,12 +13940,15 @@ private
     "0x" << "#{@words[1]}" << "#{@words[2]}" << "#{@words[3]}" 
   end
   
-  #
-  #
-  # data structure containing the IEEE oui list of registered addresses
-  # this list is updated periodically and released as a minor gem version
-  #
-  # Date Created: July, 10th 2010 - gem version 0.5.0
-  #
+# == Example
+#
+#	require 'MACAddr'
+#
+# mac1 = MACAddr.new("AC:A0:16:34:23:56") 
+#
+# puts mac1 #=> AC:A0:16:34:23:56
+#
+# puts mac1.to_i #=> 189803567260502
+#
 
 end
