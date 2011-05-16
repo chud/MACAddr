@@ -15,8 +15,14 @@
 #
 class MACAddr
 
-  private
+private
 # create a new mac by parsing a passed string
+# - mac_addr 
+#		is a colon delimited hex string or 
+#		a dotted decimal string (specified in 'format'
+# - format 
+#		defaults to 'colon_hex' the other
+#		option is 'dotted_decimal'
   def initialize(mac_addr, format='colon_hex')
 		@mac = ""
     mac_addr = mac_addr
@@ -32,7 +38,14 @@ class MACAddr
 		end
 
     if @words = re_parse.match(mac_addr)
+
+		if format == 'colon_hex'
 			@mac = @words.to_a.drop(1).pack(pack_str)	  	
+		else
+			@words.to_a.drop(1).each do |octet|
+				@mac = @mac + "%02x" % octet
+			end
+		end
       # the current list of registered IEEE OIDs
   	@oui_list = {
   		'0x0018DF' => 'The Morey Corporation',
