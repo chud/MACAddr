@@ -16,19 +16,24 @@
 class MACAddr
 
   private
+# create a new mac by parsing a passed string
   def initialize(mac_addr, format='colon_hex')
-    @mac_addr = mac_addr
+		@mac = ""
+    mac_addr = mac_addr
     colon_hex_parse = /^([[:xdigit:]]{1,2}):([[:xdigit:]]{1,2}):([[:xdigit:]]{1,2}):([[:xdigit:]]{1,2}):([[:xdigit:]]{1,2}):([[:xdigit:]]{1,2})?$/
-    dotted_decimal_parse = /^([[:digit:]]{1,3})\.([[:digit:]]{1,3})\.([[:digit:]]{1,3})\.([[:digit:]]{1,3})\.([[:digit:]]{1,3})\.([[:digit:]]{1,3})?$/
+		dotted_decimal_parse = /^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})?$/
 	
 		if format == 'colon_hex'
 			re_parse = colon_hex_parse
+			pack_str = "A2A2A2A2A2A2"
 		else
 			re_parse = dotted_decimal_parse
+			pack_str = "A*A*A*A*A*A*"
 		end
 
-    if @words = re_parse.match(@mac_addr)
-      # the current list of regisitered IEEE OIDs
+    if @words = re_parse.match(mac_addr)
+			@mac = @words.to_a.drop(1).pack(pack_str)	  	
+      # the current list of registered IEEE OIDs
   	@oui_list = {
   		'0x0018DF' => 'The Morey Corporation',
   		'0x00168C' => 'DSL Partner AS',
@@ -13896,14 +13901,17 @@ class MACAddr
   end
 
   def to_s
-    @words[0]
+    @mac.unpack('A2' * 6).join ":"
   end
 
   def to_i
-    theInt = "0x" << "#{@words[1]}" << "#{@words[2]}" << "#{@words[3]}" \
-      << "#{@words[4]}" << "#{@words[5]}" <<"#{@words[6]}"
+    theInt = "0x" + @mac
     theInt.hex
   end
+
+	def to_h
+		"0x" + @mac
+	end
 
   def vendor_name
     # "Cisco Systems"
