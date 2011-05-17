@@ -36,7 +36,6 @@ private
 			pack_str = "A2A2A2A2A2A2"
 		else
 			re_parse = dotted_decimal_parse
-			pack_str = "A*A*A*A*A*A*"
 		end
 
     if @words = re_parse.match(mac_addr)
@@ -13928,15 +13927,14 @@ private
 		"0x" + @mac
 	end
 
+	# return the IEEE oui registered name 
   def vendor_name
-    # "Cisco Systems"
-    oui = "0x" << "#{@words[1]}" << "#{@words[2]}" << "#{@words[3]}" 
+    oui = "0x" << "#{@words[1].upcase}" << "#{@words[2].upcase}" << "#{@words[3].upcase}" 
     @oui_list[oui] 
   end
 
+	# return the IEEE oui registered OID 
   def vendor_oid
-    # return the hex string for the first three words which corresponds to the
-    # vendor 
     "0x" << "#{@words[1]}" << "#{@words[2]}" << "#{@words[3]}" 
   end
   
