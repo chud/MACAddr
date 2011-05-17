@@ -41,6 +41,6 @@ class TestMACAddr < Test::Unit::TestCase
     assert_equal("CISCO SYSTEMS, INC.", MACAddr.new("00:00:0C:03:05:06").vendor_name)
     assert_not_equal("CISCO SYSTEMS, INC.", MACAddr.new("00:00:0d:03:05:06").vendor_name)
     assert_equal("CISCO SYSTEMS, INC.", MACAddr.new("00:00:0c:00:00:00").vendor_name)
-    assert_equal("00:00:0c:00:00:00", MACAddr.new("00:00:0c:03:05:06").vendor_oid)
+    assert_equal("0x00000c", MACAddr.new("00:00:0c:03:05:06").vendor_oid)
   end
 end
