@@ -1,0 +1,6 @@
+Manifest
+README
+README.textile
+Rakefile
+lib/MACAddr.rb
+test/test_MACAddr.rb
