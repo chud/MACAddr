@@ -1,6 +1,8 @@
 MACAddr - a MAC address class
 
-Version: 0.2
+Version: 0.2.2
+Author: Raymond P Chudzinski
+added UTF-8 support for non-ASCII vendor names
 
 MACAddr is a class for the manipulation of IEEE MAC addresses. 
 It is patterned after the IPAddr class in the Ruby core libs.
