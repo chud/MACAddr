@@ -39,8 +39,13 @@ class TestMACAddr < Test::Unit::TestCase
 
   def test_vendor_membership
     assert_equal("CISCO SYSTEMS, INC.", MACAddr.new("00:00:0C:03:05:06").vendor_name)
+    assert_equal("CISCO SYSTEMS, INC.", MACAddr.new("0.00.12.03.05.06", 'dotted_decimal').vendor_name)
     assert_not_equal("CISCO SYSTEMS, INC.", MACAddr.new("00:00:0d:03:05:06").vendor_name)
     assert_equal("CISCO SYSTEMS, INC.", MACAddr.new("00:00:0c:00:00:00").vendor_name)
     assert_equal("0x00000c", MACAddr.new("00:00:0c:03:05:06").vendor_oid)
   end
+	
+	def test_dotted_decimal_format
+		assert_equal(MACAddr.new("00:FF:0C:12:34:56"), MACAddr.new("0.255.12.18.52.86", 'dotted_decimal'))
+	end
 end
