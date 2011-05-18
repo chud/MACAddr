@@ -25,6 +25,9 @@ private
 # - format 
 #		defaults to 'colon_hex' the other option is 'dotted_decimal'
 #   usage "XX:XX:XX:XX:XX:XX" or "ddd.ddd.ddd.ddd.ddd.ddd"
+#-- 
+#   TODO: DRY up the pair of if stmts which handle the two formats
+#++
   def initialize(mac_addr, format='colon_hex')
 		@mac = ""
     mac_addr = mac_addr
