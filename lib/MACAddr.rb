@@ -44,7 +44,10 @@ private
     if @words = re_parse.match(mac_addr)
 
 		if format == 'colon_hex'
-			@mac = @words.to_a.drop(1).pack(pack_str)	  	
+			#@mac = @words.to_a.drop(1).pack(pack_str)	  	
+			@words.to_a.drop(1).each do |octet|
+				@mac = @mac + "%02x" % octet.hex
+			end
 		else
 			@words.to_a.drop(1).each do |octet|
 				@mac = @mac + "%02x" % octet
@@ -13932,13 +13935,13 @@ private
 
 	# return the IEEE oui registered name 
   def vendor_name
-    oui = vendor_oid
+    oui = self.vendor_oid
     @oui_list[oui] 
   end
 
 	# return the IEEE oui registered OID 
   def vendor_oid
-    "0x" << @mac.unpack('A2'* 3).to_s.upcase 
+    "0x" << @mac.unpack('A2'* 3).join.upcase 
   end
   
 # == Example
