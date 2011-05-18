@@ -46,6 +46,7 @@ class TestMACAddr < Test::Unit::TestCase
     assert_equal("0x00000C", MACAddr.new("00:00:0c:03:05:06").vendor_oid)
 		# this verifies that we still don't handle mixed case hex strings nicely
     assert_not_equal("0x00000c", MACAddr.new("00:00:0c:03:05:06").vendor_oid)
+    assert_equal("Dell Inc", MACAddr.new("0:21:9b:03:05:06").vendor_oid)
   end
 	
 	def test_dotted_decimal_format
