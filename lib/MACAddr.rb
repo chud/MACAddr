@@ -13914,7 +13914,7 @@ private
   end
 
   def addr
-      return self.words if defined? self.words and self.words
+     @mac 
   end
 
   def to_s
@@ -13932,13 +13932,13 @@ private
 
 	# return the IEEE oui registered name 
   def vendor_name
-    oui = "0x" << "#{@words[1].upcase}" << "#{@words[2].upcase}" << "#{@words[3].upcase}" 
+    oui = vendor_oid
     @oui_list[oui] 
   end
 
 	# return the IEEE oui registered OID 
   def vendor_oid
-    "0x" << "#{@words[1]}" << "#{@words[2]}" << "#{@words[3]}" 
+    "0x" << @mac.unpack('A2'* 3).to_s.upcase 
   end
   
 # == Example
