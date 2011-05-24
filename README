@@ -1,6 +1,6 @@
 MACAddr - a MAC address class
 
-Version: 0.2.2
+Version: 0.3.0
 Author: Raymond P Chudzinski
 added UTF-8 support for non-ASCII vendor names
 
@@ -8,17 +8,10 @@ MACAddr is a class for the manipulation of IEEE MAC addresses.
 It is patterned after the IPAddr class in the Ruby core libs.
     Copyright (C) 2010 Raymond P Chudzinski
 
-
-methods include comparison, determining manufacturer, printabilty and a few helper
+methods include comparison, determining manufacturer, printabilty and a few helpers
 
 TODO: Optimze the internals to handle the 48 bit values more effieicently
 TODO: compress or move the 10000+ line list ofr vendor oids
-
-Author: Raymond P Chudzinski
-Origin Date: July 18, 2010
-
-released on github July 21. 2010
-0.2 released on Sept. 1, 2010
 
 all of the orignal source can be found in github
 http://github.com/chud/MACAddr
